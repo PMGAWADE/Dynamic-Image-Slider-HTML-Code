@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+</head>
+<body>
+    <div class="slider-container">
+        <link rel="StyleSheet" href="stylesheet.css">
+        <div class="slider" id="slider">
+            <img class="slide" src="/project/pic2.jpg" alt="Slide 1">
+            <img class="slide" src="/project/pic1.jpg" alt="Slide 2">
+            <img class="slide" src="/project/pic3.jpg" alt="Slide 3">
+        </div>
+        <div class="controls">
+            <button id="prev">&#10094;</button>
+            <button id="next">&#10095;</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const slider = document.getElementById('slider');
+        
+        document.getElementById('next').addEventListener('click', () => {
+            index = (index + 1) % totalSlides;
+            updateSlider();
+        });
+        
+        document.getElementById('prev').addEventListener('click', () => {
+            index = (index - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+        
+        function updateSlider() {
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }
+        
+        setInterval(() => {
+            index = (index + 1) % totalSlides;
+            updateSlider();
+        }, 3000);
+    </script>
